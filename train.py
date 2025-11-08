@@ -168,7 +168,6 @@ def main():
 
     # Save Model
     torch.save(model.state_dict(), "resnet50_catsdogs.pth")
-    print("Model Saved: resnet50_catsdogs.pth")
 
 
 if __name__ == "__main__":
