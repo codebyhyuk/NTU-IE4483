@@ -26,7 +26,7 @@ train_transform = transforms.Compose([
         std=[0.229, 0.224, 0.225]
     )
 ])
-
+### check
 val_transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
