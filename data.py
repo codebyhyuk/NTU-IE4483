@@ -86,21 +86,6 @@ def get_dataset(
     root_dir: str,
     image_size: int = 224,
 ) -> Dict[str, Dataset]:
-    """
-    root_dir 구조:
-        root_dir/
-          train/
-            cat/
-            dog/
-          val/
-            cat/
-            dog/
-          test/
-            0.jpg, 1.jpg, ...
-
-    Returns: dict with keys 'train', 'val', 'test'
-    """
-
     train_transform = transforms.Compose([
         transforms.Resize((image_size, image_size)),
         transforms.RandomHorizontalFlip(),
