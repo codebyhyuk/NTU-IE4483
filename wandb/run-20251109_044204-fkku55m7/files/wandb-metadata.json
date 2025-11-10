@@ -1,0 +1,43 @@
+{
+  "os":  "Linux-6.8.0-86-generic-x86_64-with-glibc2.39",
+  "python":  "CPython 3.12.12",
+  "startedAt":  "2025-11-09T04:42:04.378130Z",
+  "program":  "/home/ee4483_02/NTU-IE4483/train_scratch_model.py",
+  "codePath":  "train_scratch_model.py",
+  "codePathLocal":  "train_scratch_model.py",
+  "git":  {
+    "remote":  "https://github.com/codebyhyuk/NTU-IE4483.git",
+    "commit":  "e4f57b8f434d0f0e9088d2a8b2fde6afea274c8b"
+  },
+  "email":  "homologylee@gmail.com",
+  "root":  "/home/ee4483_02/NTU-IE4483",
+  "host":  "gpu-a5000-1.cluster02.eee.ntu.edu.sg",
+  "executable":  "/home/ee4483_02/.conda/envs/ee4483/bin/python",
+  "cpu_count":  16,
+  "cpu_count_logical":  16,
+  "gpu":  "NVIDIA RTX A5000",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "32162967552",
+      "used":  "5147975680"
+    }
+  },
+  "memory":  {
+    "total":  "118158368768"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA RTX A5000",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  8192,
+      "architecture":  "Ampere",
+      "uuid":  "GPU-ff3e656c-6e5e-098d-4fa6-ea8b5d9ab284"
+    }
+  ],
+  "cudaVersion":  "12.8",
+  "slurm":  {
+    "job_id":  "12381"
+  },
+  "writerId":  "z39hvibh6vyo6p35qpycvmu2to7l5pz0"
+}

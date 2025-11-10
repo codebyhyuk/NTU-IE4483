@@ -4,7 +4,7 @@
 #SBATCH --error=error.log
 #SBATCH --time=12:00:00
 #SBATCH --gpus=1
-#SBATCH --constraint=6000ada
+#SBATCH --constraint=a5000
 #SBATCH --chdir=/home/ee4483_02/NTU-IE4483
 
 # (If your cluster uses environment modules)
@@ -16,4 +16,9 @@ source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate ee4483      # <-- your env name
 
 python -V
-srun python train_scratch_model.py
+srun python train_scratch_model.py \
+	--lr 0.00001 \
+	--epochs 50 \
+	--batch_size 32 \
+	--save_dir ./runs \
+	--wandb enabled

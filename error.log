@@ -1,0 +1,10 @@
+/home/ee4483_02/NTU-IE4483/train_scratch_model.py:190: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  timestamp = (datetime.utcnow() + timedelta(hours=8)).strftime("%m%d%H%M%S")
+wandb: Currently logged in as: homologylee (lees0196) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run y09zmimt
+wandb: Tracking run with wandb version 0.22.3
+wandb: Run data is saved locally in /home/ee4483_02/NTU-IE4483/wandb/run-20251110_121716-y09zmimt
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run bs32-lr1e-05-1110201715
+wandb: ⭐️ View project at https://wandb.ai/lees0196/IE4483
+wandb: 🚀 View run at https://wandb.ai/lees0196/IE4483/runs/y09zmimt

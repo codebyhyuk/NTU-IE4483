@@ -1,0 +1,65 @@
+_wandb:
+    value:
+        cli_version: 0.22.3
+        e:
+            z39hvibh6vyo6p35qpycvmu2to7l5pz0:
+                codePath: train_scratch_model.py
+                codePathLocal: train_scratch_model.py
+                cpu_count: 16
+                cpu_count_logical: 16
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "32162967552"
+                        used: "5147975680"
+                email: homologylee@gmail.com
+                executable: /home/ee4483_02/.conda/envs/ee4483/bin/python
+                git:
+                    commit: e4f57b8f434d0f0e9088d2a8b2fde6afea274c8b
+                    remote: https://github.com/codebyhyuk/NTU-IE4483.git
+                gpu: NVIDIA RTX A5000
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 8192
+                      memoryTotal: "25757220864"
+                      name: NVIDIA RTX A5000
+                      uuid: GPU-ff3e656c-6e5e-098d-4fa6-ea8b5d9ab284
+                host: gpu-a5000-1.cluster02.eee.ntu.edu.sg
+                memory:
+                    total: "118158368768"
+                os: Linux-6.8.0-86-generic-x86_64-with-glibc2.39
+                program: /home/ee4483_02/NTU-IE4483/train_scratch_model.py
+                python: CPython 3.12.12
+                root: /home/ee4483_02/NTU-IE4483
+                slurm:
+                    job_id: "12381"
+                startedAt: "2025-11-09T04:42:04.378130Z"
+                writerId: z39hvibh6vyo6p35qpycvmu2to7l5pz0
+        m: []
+        python_version: 3.12.12
+        t:
+            "1":
+                - 1
+                - 41
+            "2":
+                - 1
+                - 41
+            "3":
+                - 16
+            "4": 3.12.12
+            "5": 0.22.3
+            "12": 0.22.3
+            "13": linux-x86_64
+batch_size:
+    value: 32
+dataset:
+    value: dogcat
+epochs:
+    value: 50
+learning_rate:
+    value: 0.0001
+pretrained:
+    value: false
+runtime:
+    value: "1109124203"
