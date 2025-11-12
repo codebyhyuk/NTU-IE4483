@@ -39,3 +39,15 @@ Epoch 38/50 | Loss: 0.1495 | Val Acc: 88.50%
 Epoch 39/50 | Loss: 0.1488 | Val Acc: 88.72%
 Epoch 40/50 | Loss: 0.1451 | Val Acc: 89.86%
 Epoch 41/50 | Loss: 0.1354 | Val Acc: 89.44%
+Epoch 42/50 | Loss: 0.1251 | Val Acc: 89.34%
+Epoch 43/50 | Loss: 0.1254 | Val Acc: 90.02%
+Epoch 44/50 | Loss: 0.1203 | Val Acc: 89.46%
+Epoch 45/50 | Loss: 0.1105 | Val Acc: 89.86%
+Epoch 46/50 | Loss: 0.1133 | Val Acc: 90.26%
+Epoch 47/50 | Loss: 0.1015 | Val Acc: 90.50%
+Epoch 48/50 | Loss: 0.1019 | Val Acc: 90.74%
+Epoch 49/50 | Loss: 0.0910 | Val Acc: 90.24%
+Epoch 50/50 | Loss: 0.0913 | Val Acc: 90.66%
+Model Saved: resnet50_catsdogs.pth
+/home/ee4483_02/NTU-IE4483/train_scratch_model.py:225: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  timestamp = (datetime.utcnow() + timedelta(hours=8)).strftime("%m%d%H%M%S")

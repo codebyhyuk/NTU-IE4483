@@ -19,3 +19,5 @@ config: {'runtime': '1110201715', 'pretrained': False, 'dataset': 'dogcat', 'epo
 2025-11-10 12:17:18,586 INFO    MainThread:308322 [wandb_run.py:_redirect():2423] Wrapping output streams.
 2025-11-10 12:17:18,586 INFO    MainThread:308322 [wandb_run.py:_redirect():2446] Redirects installed.
 2025-11-10 12:17:18,597 INFO    MainThread:308322 [wandb_init.py:init():1073] run started, returning control to user process
+2025-11-10 13:14:24,888 INFO    wandb-AsyncioManager-main:308322 [service_client.py:_forward_responses():80] Reached EOF.
+2025-11-10 13:14:24,889 INFO    wandb-AsyncioManager-main:308322 [mailbox.py:close():137] Closing mailbox, abandoning 1 handles.

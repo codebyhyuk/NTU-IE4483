@@ -17,7 +17,7 @@ conda activate ee4483      # <-- your env name
 
 python -V
 srun python train_scratch_model.py \
-	--lr 0.00001 \
+	--lr 0.0001 \
 	--epochs 50 \
 	--batch_size 32 \
 	--save_dir ./runs \
