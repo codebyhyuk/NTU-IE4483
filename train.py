@@ -26,8 +26,8 @@ def parse_args():
     parser.add_argument("--data_dir", type=str,
                         default="/projects/448302/datasets",
                         help="path to the dataset directory; must have /train, /val, /test as child directory")
-    parser.add_argument("--checkpoint", type=str,
-                        default=None,
+    parser.add_argument("--pretrained", type=bool,
+                        default=False,
                         help="path to the checkpoint")
     parser.add_argument("--lr", type=float,
                         default=1e-4,
