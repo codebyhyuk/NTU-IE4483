@@ -24,7 +24,7 @@ def parse_args():
                         default="dogcat",
                         help="name of the dataset")
     parser.add_argument("--data_dir", type=str,
-                        default="/projects/448302/datasets",
+                        default="/projects/448302",
                         help="path to the dataset directory; must have /train, /val, /test as child directory")
     parser.add_argument("--checkpoint", type=str,
                         default=None,
@@ -46,7 +46,7 @@ def parse_args():
                         help="whether to log using wandb, a visualization tool")
     return parser.parse_args()
 
-def load_data(data_dir=None):
+def load_data(data_dir=None, dataset=None):
     '''
     2) Load Dataset / Construct DataLoader
     -   input
@@ -56,34 +56,49 @@ def load_data(data_dir=None):
             val_loader: (torch.DataLoader) DataLoader for the validation dataset
     '''
     if data_dir is None: raise ValueError
-    train_dir = data_dir + "/train"
-    val_dir = data_dir + "/val"
+    if dataset = "dogcat":
+        train_dir = data_dir + "/train"
+        val_dir = data_dir + "/val"
 
-    train_transform = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomRotation(degrees=15),
-        transforms.ToTensor(),
-        transforms.Normalize(
-            mean=[0.485, 0.456, 0.406],
-            std=[0.229, 0.224, 0.225]
-        )
-    ])
+        train_transform = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomRotation(degrees=15),
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]
+            )
+        ])
 
-    val_transform = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.ToTensor(),
-        transforms.Normalize(
-            mean=[0.485, 0.456, 0.406],
-            std=[0.229, 0.224, 0.225]
-        )
-    ])
+        val_transform = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]
+            )
+        ])
 
-    train_dataset = datasets.ImageFolder(train_dir, transform=train_transform)
-    val_dataset   = datasets.ImageFolder(val_dir, transform=val_transform)
+        train_dataset = datasets.ImageFolder(train_dir, transform=train_transform)
+        val_dataset   = datasets.ImageFolder(val_dir, transform=val_transform)
 
-    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4)
-    val_loader   = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
+        train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4)
+        val_loader   = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
+
+    elif dataset = "cifar10":
+        root = data_dir  # where the dataset folder will be created
+        tfm = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize(mean=(0.4914, 0.4822, 0.4465),
+                                std=(0.2023, 0.1994, 0.2010)),
+        ])
+        trainset = datasets.CIFAR10(root=root, train=True,  transform=tfm, download=True)
+        testset  = datasets.CIFAR10(root=root, train=False, transform=tfm, download=True)
+
+        trainloader = DataLoader(trainset, batch_size=args.batch_size, shuffle=True,  num_workers=4)
+        testloader  = DataLoader(testset,  batch_size=args.batch_size, shuffle=False, num_workers=4)
+
     return train_loader, val_loader
 
 def visualize(loss: list[float], val_acc: list[float], save_dir: str):
@@ -221,7 +236,9 @@ def main(args):
     set_seed(42)
 
     # Define and create required training configurations
-    train_loader, val_loader = load_data(args.data_dir)
+    data_dir = f"{args.data_dir}/{args.data}"
+    if os.path.exists(data_dir) is False: os.makedirs(data_dir)
+    train_loader, val_loader = load_data()
 
     device      = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     num_classes = 2 if args.data=="dogcat" else "cifar10"
