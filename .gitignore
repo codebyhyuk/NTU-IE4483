@@ -1,7 +1,8 @@
 __pycache__/
 */__pycache__/
 **/__pycache__/
-/run
+/runs
 /wandb
 *.log
 /checkpoints
+
