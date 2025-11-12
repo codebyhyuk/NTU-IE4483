@@ -16,7 +16,10 @@ source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate ee4483      # <-- your env name
 
 python -V
-srun python train_scratch_model.py \
+srun python train.py \
+	--dataset dogcat \
+	--data_dir /projects/448302/datasets \
+	--pretrained False \
 	--lr 0.0001 \
 	--epochs 50 \
 	--batch_size 32 \
