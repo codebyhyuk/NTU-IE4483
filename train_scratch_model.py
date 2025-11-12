@@ -205,7 +205,7 @@ def main(args):
     train_loader, val_loader = load_data(args.data_dir)
 
     device      = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    num_classes = 2 if args.data="dogcat" else "cifar10"
+    num_classes = 2 if args.data=="dogcat" else "cifar10"
     model       = ResNet50(num_classes=num_classes).to(device)
     criterion   = nn.CrossEntropyLoss()
     optimizer   = torch.optim.Adam(model.parameters(), lr=args.lr)
