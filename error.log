@@ -1,10 +1,11 @@
-/home/ee4483_02/NTU-IE4483/train_scratch_model.py:190: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  timestamp = (datetime.utcnow() + timedelta(hours=8)).strftime("%m%d%H%M%S")
-wandb: Currently logged in as: homologylee (lees0196) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
-wandb: setting up run m9sj32t7
-wandb: Tracking run with wandb version 0.22.3
-wandb: Run data is saved locally in /home/ee4483_02/NTU-IE4483/wandb/run-20251112_154937-m9sj32t7
-wandb: Run `wandb offline` to turn off syncing.
-wandb: Syncing run bs32-lr0.0001-1112234936
-wandb: ⭐️ View project at https://wandb.ai/lees0196/IE4483
-wandb: 🚀 View run at https://wandb.ai/lees0196/IE4483/runs/m9sj32t7
+Traceback (most recent call last):
+  File "/home/ee4483_02/NTU-IE4483/train_scratch_model.py", line 246, in <module>
+    main(args)
+  File "/home/ee4483_02/NTU-IE4483/train_scratch_model.py", line 188, in main
+    set_seed(42)
+  File "/home/ee4483_02/NTU-IE4483/train_scratch_model.py", line 174, in set_seed
+    np.random.seed(seed)                 
+    ^^
+NameError: name 'np' is not defined. Did you mean: 'nn'?
+srun: error: gpu-a5000-5: task 0: Exited with exit code 1
+srun: Terminating StepId=13649.0
