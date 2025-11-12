@@ -17,8 +17,8 @@ conda activate ee4483      # <-- your env name
 
 python -V
 srun python train.py \
-	--dataset dogcat \
-	--data_dir /projects/448302/datasets \
+	--dataset cifar10 \
+	--data_dir /projects/448302 \
 	--pretrained False \
 	--lr 0.0001 \
 	--epochs 50 \

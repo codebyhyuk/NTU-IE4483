@@ -47,7 +47,7 @@ def parse_args():
                         help="whether to log using wandb, a visualization tool")
     return parser.parse_args()
 
-def load_data(data_dir=None, dataset=None):
+def load_data(data_dir=None):
     '''
     2) Load Dataset / Construct DataLoader
     -   input
@@ -57,7 +57,7 @@ def load_data(data_dir=None, dataset=None):
             val_loader: (torch.DataLoader) DataLoader for the validation dataset
     '''
     if data_dir is None: raise ValueError
-    if dataset == "dogcat":
+    if args.dataset == "dogcat":
         train_dir = data_dir + "/train"
         val_dir = data_dir + "/val"
 
@@ -86,19 +86,32 @@ def load_data(data_dir=None, dataset=None):
 
         train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4)
         val_loader   = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
-
-    elif dataset == "cifar10":
+    elif args.dataset == "cifar10":
         root = data_dir  # where the dataset folder will be created
-        tfm = transforms.Compose([
+        train_transform = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomRotation(degrees=15),
             transforms.ToTensor(),
-            transforms.Normalize(mean=(0.4914, 0.4822, 0.4465),
-                                std=(0.2023, 0.1994, 0.2010)),
+            transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]
+            )
         ])
-        trainset = datasets.CIFAR10(root=root, train=True,  transform=tfm, download=True)
-        testset  = datasets.CIFAR10(root=root, train=False, transform=tfm, download=True)
 
-        trainloader = DataLoader(trainset, batch_size=args.batch_size, shuffle=True,  num_workers=4)
-        testloader  = DataLoader(testset,  batch_size=args.batch_size, shuffle=False, num_workers=4)
+        val_transform = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]
+            )
+        ])
+        trainset = datasets.CIFAR10(root=root, train=True,  transform=train_transform, download=True)
+        valset  = datasets.CIFAR10(root=root, train=False, transform=val_transform, download=True)
+
+        train_loader = DataLoader(trainset, batch_size=args.batch_size, shuffle=True,  num_workers=4)
+        val_loader  = DataLoader(valset,  batch_size=args.batch_size, shuffle=False, num_workers=4)
 
     return train_loader, val_loader
 
@@ -239,10 +252,12 @@ def main(args):
     # Define and create required training configurations
     data_dir = f"{args.data_dir}/{args.dataset}"
     if os.path.exists(data_dir) is False: os.makedirs(data_dir)
-    train_loader, val_loader = load_data()
+    train_loader, val_loader = load_data(data_dir)
 
     device      = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    num_classes = 2 if args.data=="dogcat" else "cifar10"
+    if args.dataset == "dogcat": num_classes=2
+    elif args.dataset == "cifar10": num_classes=10
+    else: raise ValueError("Undefined datset")
 
     if args.pretrained: # When pretrained model is given
         print("Pretrained Model Used")
@@ -273,7 +288,7 @@ def main(args):
             config={
                 "runtime": timestamp,
                 "pretrained": False,
-                "dataset": "dogcat",
+                "dataset": args.dataset,
                 "epochs": args.epochs,
                 "batch_size": args.batch_size,
                 "learning_rate": args.lr,
