@@ -168,12 +168,23 @@ def validate(model, loader, device):
 # 6) Custom ResNet50 with Classification Header
 # ---------------------------
 
+def set_seed(seed=42):
+    random.seed(seed)                   
+    np.random.seed(seed)                 
+    torch.manual_seed(seed)              
+    torch.cuda.manual_seed(seed)         
+    torch.cuda.manual_seed_all(seed)      
 
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
+    print(f"Random Seed Fixed: {seed}")
 
 # ---------------------------
 # 7) Main Pipeline
 # ---------------------------
 def main(args):
+    set_seed(42)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Using device:", device)

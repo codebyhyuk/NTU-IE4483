@@ -42,3 +42,10 @@ Epoch 38/50 | Loss: 0.0465 | Val Acc: 96.22%
 Epoch 39/50 | Loss: 0.0385 | Val Acc: 96.04%
 Epoch 40/50 | Loss: 0.0397 | Val Acc: 96.00%
 Epoch 41/50 | Loss: 0.0423 | Val Acc: 95.40%
+Epoch 42/50 | Loss: 0.0377 | Val Acc: 95.76%
+Epoch 43/50 | Loss: 0.0341 | Val Acc: 96.10%
+Epoch 44/50 | Loss: 0.0349 | Val Acc: 95.66%
+Epoch 45/50 | Loss: 0.0311 | Val Acc: 96.22%
+Epoch 46/50 | Loss: 0.0296 | Val Acc: 95.84%
+Epoch 47/50 | Loss: 0.0351 | Val Acc: 96.18%
+Epoch 48/50 | Loss: 0.0297 | Val Acc: 96.50%
