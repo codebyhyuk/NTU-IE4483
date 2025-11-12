@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import pandas as pd
 
+import numpy as np
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
@@ -26,8 +27,8 @@ def parse_args():
     parser.add_argument("--data_dir", type=str,
                         default="/projects/448302",
                         help="path to the dataset directory; must have /train, /val, /test as child directory")
-    parser.add_argument("--checkpoint", type=str,
-                        default=None,
+    parser.add_argument("--pretrained", type=bool,
+                        default=False,
                         help="path to the checkpoint")
     parser.add_argument("--lr", type=float,
                         default=1e-4,
@@ -56,7 +57,7 @@ def load_data(data_dir=None, dataset=None):
             val_loader: (torch.DataLoader) DataLoader for the validation dataset
     '''
     if data_dir is None: raise ValueError
-    if dataset = "dogcat":
+    if dataset == "dogcat":
         train_dir = data_dir + "/train"
         val_dir = data_dir + "/val"
 
@@ -86,7 +87,7 @@ def load_data(data_dir=None, dataset=None):
         train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4)
         val_loader   = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
 
-    elif dataset = "cifar10":
+    elif dataset == "cifar10":
         root = data_dir  # where the dataset folder will be created
         tfm = transforms.Compose([
             transforms.ToTensor(),
@@ -236,7 +237,7 @@ def main(args):
     set_seed(42)
 
     # Define and create required training configurations
-    data_dir = f"{args.data_dir}/{args.data}"
+    data_dir = f"{args.data_dir}/{args.dataset}"
     if os.path.exists(data_dir) is False: os.makedirs(data_dir)
     train_loader, val_loader = load_data()
 
